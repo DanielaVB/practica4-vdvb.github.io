@@ -1,0 +1,67 @@
+@email = si722752@iteso.mx
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBlZGllbnRlIjoic2k3MjI3NTJAaXRlc28ubXgiLCJpYXQiOjE2MTgzODU3ODJ9.JgXhy079d0xXh9CxC2ygahBza3VPyg2xtWDLI18iVXw
+@user = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBlZGllbnRlIjoic2k3MjI3NTJAaXRlc28ubXgiLCJjb3JyZW8iOiJzaTcyMjc1MkBpdGVzby5teCIsImlpZCI6OCwiaWF0IjoxNjE4Mzg5OTAxLCJleHAiOjE2MTgzOTM1MDF9.Bf2xX5GfU2ovtMrPCDTj4jPFzu5UQrDuPsiqkvwKAI4
+
+###
+
+GET https://users-dasw.herokuapp.com/api/mytoken
+x-email: {{email}}
+###
+POST https://users-dasw.herokuapp.com/api/login
+Content-Type: application/json
+x-admin: {{token}}
+ 
+{
+    "correo":"si722752@iteso.mx",
+    "password":"redes1234"
+}
+
+### REGISTRAR UN USUARIO
+
+POST https://users-dasw.herokuapp.com/api/users
+Content-Type: application/json
+x-admin: {{token}}
+
+{
+    "nombre":"Lani",
+    "apellido":"Gareu",
+    "correo":"tataa@tata.com",
+    "url":"",
+    "sexo":"H",
+    "fecha":"10-10-2019",
+    "password":"Redes1234!"
+}
+
+###  OBTENER USUARIOS  (permite query param): ?nombre=L
+GET  https://users-dasw.herokuapp.com/api/users
+x-admin: {{token}}
+x-auth: {{user}}
+
+### OBTENER USUARIO test2@t.com
+GET  https://users-dasw.herokuapp.com/api/users/t@t.com
+Content-Type: application/json
+x-admin: {{token}}
+x-auth: {{user}}
+
+### ACTUALIZAR USUARIO t@t.com
+PUT  https://users-dasw.herokuapp.com/api/users/t@t.com
+Content-Type: application/json
+x-admin: {{token}}
+x-auth: {{user}}
+
+{
+    "nombre":"L2",
+    "apellido":"G2",
+    "correo":"t@t.com",
+    "url": "https://randomuser.me/api/portraits/men/8.jpg",
+    "sexo":"H",
+    "fecha":"10-10-2012",
+    "password":"123456"
+}
+
+### BORRAR AL USUARIO test2@test.com
+
+DELETE  https://users-dasw.herokuapp.com/api/users/test@test.com
+Content-Type: application/json
+x-admin: {{token}}
+x-auth: {{user}}
